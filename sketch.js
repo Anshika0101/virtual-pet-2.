@@ -1,19 +1,18 @@
-//Create variables here
-
-var database ,dog,dog1,dog2
+var database ,dog,dog1,dog2,foodS
 var position
+//var form
 var feed,add
 var foodobject
 var Feedtime
 var Lastfeed
-
+//Create variables here
 
 function preload()
+
 {
-  //loading  images 
   dogimg1 = loadImage("images/dogImg.png")
   dogimg2 = loadImage("images/dogImg1.png")
-	
+	//load images here
 }
 
 function setup() {
@@ -25,42 +24,70 @@ function setup() {
   dog = createSprite(550,250,10,10);
   dog.addImage(dogimg1)
   dog.scale=0.2
-  
  
-
   var dogo = database.ref('Food');
   dogo.on("value", readPosition, showError);
-feed = createButton("FEED DRAGO")
-feed.position(500,15)
-feed.mousePressed(FeedDog)
-add = createButton("ADD FOOD")
-add.position(400,15)
-add.mousePressed(AddFood)
+  feed = createButton("FEED DRAGO")
+  feed.position(500,15)
+  feed.mousePressed(FeedDog)
+  add = createButton("ADD FOOD")
+  add.position(400,15)
+  add.mousePressed(AddFood)
 
+  for (var i = 5; i < 1000; i=i+10) 
+  {
+  
+  var dot = createSprite(i, 5, 3, 3);
+  dot.shapeColor = "blue";
+  
+  }
+  for (var i = 5; i < 1000; i=i+10) 
+  {
+  
+  var dot1 = createSprite(i, 495, 3, 3);
+  dot1.shapeColor = "blue";
+  
+  }
+  for (var i = 5; i < 1000; i=i+10) 
+  {
+  
+  var dot1 = createSprite(995,i, 3, 3);
+  dot1.shapeColor = "blue";
+  
+  }
+  for (var i = 5; i < 1000; i=i+10) 
+  {
+  
+  var dot1 = createSprite(5,i, 3, 3);
+  dot1.shapeColor = "blue";
+  
+  }
 } 
 
-
-
 function draw(){
- { background(46,139,87);
+ background("pink");
+
  foodobject.display()
  
- }
  drawSprites();
   
-  fill(255,255,254);
+ fill(255,255,254);
  textSize(15);
 
-  // text("Note: Press UP_ARROW Key To Feed Drago Milk!",130,10,300,20);
- 
-  //add styles here
 drawSprites();
+textSize(17);
+  fill("black");
+  text("❤This is your Puppy Tommy🐶 and he is so Hungry❤",320,120);
+  fill("black");
+  text("💖Add food for Tommy 'ADD FOOD' then click on 'FEED DRAGO' to feed your pet Dog Tommy💖",200,100);
+  fill("black");
+  text("Milk Bottles Remaining  "+foodS,400,440);
+  fill("black");
+  text("💛Hellow Once Again,Gorgeous mam💛",400,80);
 }
 function readPosition(data){
   position = data.val();
   foodobject.updateFoodStock(position)
-  console.log(position.x);
-  
 }
 
 function showError(){
